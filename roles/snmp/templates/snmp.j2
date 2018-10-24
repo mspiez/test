@@ -1,0 +1,26 @@
+#jinja2: lstrip_blocks: "true"
+snmp {
+    interface {{ man_interface }};
+    community "{{ snmp_community_name }}" {
+        authorization read-only;
+        clients {
+{% for client in snmp_clients %}
+            {{ client }};
+{% endfor %}
+        }
+    }
+
+    trap-options {
+        source-address {{ man_interface_ip }};
+    }
+
+    trap-group {{ snmp_trap_group }} {
+        version v2;
+        targets {
+            {{ snmp_sv_prod }};
+            {{ snmp_sv_acc }};
+            {{ snmp_sv_dev }};
+            {{ snmp_sv_failover }};
+        }
+    }
+}

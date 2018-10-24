@@ -1,0 +1,5 @@
+---
+snmp_contact: "n"
+snmp_location: "site1"
+
+man_interface_ip: "192.168.122.10"

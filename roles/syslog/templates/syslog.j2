@@ -1,0 +1,25 @@
+#jinja2: lstrip_blocks: "true"
+system {
+    replace:
+    syslog {
+        archive size 10m files 10;
+        user * {
+            any emergency;
+        }
+        host {{ environments.syslog_server_primary }} {
+            any notice;
+            authorization info;
+            structured-data;
+        }
+        file messages {
+            any notice;
+            authorization info;
+            explicit-priority;
+            }
+        file interactive-commands {
+            interactive-commands any;
+            explicit-priority;
+        }
+        source-address {{ man_interface_ip }}; 
+    }
+}

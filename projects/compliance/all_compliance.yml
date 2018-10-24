@@ -1,0 +1,7 @@
+---
+- import_playbook: "ntp.yml"
+- import_playbook: "services.yml"
+- import_playbook: "snmp.yml"
+- import_playbook: "syslog.yml"
+- import_playbook: "system.yml"
+- import_playbook: "tacacs.yml"

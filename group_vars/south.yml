@@ -1,0 +1,12 @@
+region:
+  tacacs_sv_primary: "10.1.11.9"
+  tacacs_sv_secondary: "10.1.11.10"
+  tacacs_sv_tertiary: "10.1.11.8"
+
+environments:
+  syslog_server_primary: "10.1.10.32"
+
+ntp_sv_1: "10.1.10.6"
+ntp_sv_2: "10.1.10.7"
+ntp_sv_3: "10.1.10.4"
+ntp_sv_4: "10.1.10.5"

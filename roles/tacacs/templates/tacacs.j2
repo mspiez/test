@@ -1,0 +1,52 @@
+#jinja2: lstrip_blocks: "true"
+system {
+    replace:
+    authentication-order tacplus;
+    replace:
+    tacplus-server {
+        {{ region.tacacs_sv_primary }} {
+            secret {{ tacacs_server_key }};
+            timeout 5;
+            source-address {{ man_interface_ip }};
+        }
+        {{ region.tacacs_sv_secondary }} {
+            secret {{ tacacs_server_key }};
+            timeout 5;
+            source-address {{ man_interface_ip }};
+        }
+        {{ region.tacacs_sv_tertiary }} {
+            secret {{ tacacs_server_key }};
+            timeout 5;
+            source-address {{ man_interface_ip }};
+        }
+    }
+    replace:
+    tacplus-options {
+        exclude-cmd-attribute;
+    }
+    replace:
+    accounting {
+        events [ change-log interactive-commands ];
+        destination {
+            tacplus {
+                server {
+                    {{ region.tacacs_sv_primary }} {
+                        secret {{ tacacs_server_key }};
+                        timeout 5;
+                        source-address {{ man_interface_ip }};
+                    }
+                    {{ region.tacacs_sv_secondary }} {
+                        secret {{ tacacs_server_key }};
+                        timeout 5;
+                        source-address {{ man_interface_ip }};
+                    }
+                    {{ region.tacacs_sv_tertiary }} {
+                        secret {{ tacacs_server_key }};
+                        timeout 5;
+                        source-address {{ man_interface_ip }};
+                    }
+                }
+            }
+        }
+    }
+}

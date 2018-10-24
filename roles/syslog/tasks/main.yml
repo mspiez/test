@@ -1,0 +1,23 @@
+---
+- name: "01 - {{ inventory_hostname | upper }}: ENSURE OUTPUT DIRECTORY EXITS"
+  file:
+    path: "{{ output_dir }}/{{ inventory_hostname }}"
+    state: "directory"
+
+- name: "02 - {{ inventory_hostname | upper }}: GENERATE INTENDED CONFIG"
+  template:
+    src: "syslog.j2"
+    dest: "{{ output_dir }}/{{ inventory_hostname }}/syslog.cfg"
+
+- name: "03 - {{ inventory_hostname | upper }}: CHECK SYSLOG CONFIG ON DEVICE"
+  junos_config:
+    update: "replace"
+    src_format: "text"
+    src: "{{ output_dir }}/{{ inventory_hostname }}/syslog.cfg"
+  check_mode: true
+  register: report
+
+- name: "04 - GENERATE SYSLOG REPORT"
+  template:
+    src: "syslog_report.j2"
+    dest: "{{ output_dir }}/{{ inventory_hostname }}/20_syslog_report.md"

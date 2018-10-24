@@ -1,0 +1,18 @@
+---
+- name: "01: GET NON COMPLIANT TACACS HOSTS"
+  hosts: "localhost"
+  connection: "local"
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: "compliance_api"
+      vars:
+        cfg_section: "tacacs"
+
+- name: "02: PUSH CONFIGS TO FIX TACACS COMPLIANCE"
+  hosts: "tacacs_non_compliant"
+  connection: "netconf"
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: "tacacs"

@@ -1,0 +1,20 @@
+---
+output_dir: "./outputs"
+
+man_interface: "lo0"
+
+snmp_community_name: "ntc_snmp"
+snmp_trap_group: "ntc_trap_group"
+snmp_clients:
+  - "10.1.10.1/32"
+  - "10.1.10.2/32"
+snmp_sv_prod: "10.1.10.1"
+snmp_sv_acc: "10.1.10.2"
+snmp_sv_dev: "10.1.10.3"
+snmp_sv_failover: "10.1.10.4"
+
+port_number: 22
+
+ntp_key: "$9$ZfDkPz39pu1zFcyKvLX"
+
+tacacs_server_key: "ntc123"

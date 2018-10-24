@@ -1,0 +1,1 @@
+|   {{ inventory_hostname.ljust(8) }} |   SYSTEM{{' '.ljust(4)}}|   {% if not report['changed'] %}OK{{' '.ljust(7)}}{% else %}NOT OK{{' '.ljust(3)}}{% endif %}|

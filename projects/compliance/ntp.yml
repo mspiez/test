@@ -1,0 +1,18 @@
+---
+- name: "01: GET NON COMPLIANT NTP HOSTS"
+  hosts: "localhost"
+  connection: "local"
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: "compliance_api"
+      vars:
+        cfg_section: "ntp"
+
+- name: "02: PUSH CONFIGS TO FIX NTP COMPLIANCE"
+  hosts: "ntp_non_compliant"
+  connection: "netconf"
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: "ntp"

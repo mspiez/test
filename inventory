@@ -1,0 +1,25 @@
+[all:vars]
+ansible_python_interpreter="python"
+ansible_user=ntc
+ansible_ssh_pass=ntc123
+
+[juniper:vars]
+ansible_network_os="junos"
+
+[juniper]
+qfx1 ansible_host=10.1.100.112
+qfx2
+vmx3 ansible_host=35.232.66.171 ansible_ssh_pass=ntc123
+mx1 ansible_host=192.168.122.10 ansible_ssh_pass=admin2017 ansible_user=admin
+vmx7 ansible_host=18.235.23.109
+
+[east]
+qfx1
+
+[west]
+qfx2
+
+[south]
+vmx3
+mx1
+vmx7

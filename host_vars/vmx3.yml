@@ -1,0 +1,5 @@
+---
+snmp_contact: "ntc"
+snmp_location: "site3"
+
+man_interface_ip: "10.1.1.3"

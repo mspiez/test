@@ -1,0 +1,15 @@
+#jinja2: lstrip_blocks: "true"
+system {
+    replace:
+    services {
+        ssh {
+            root-login allow;
+            protocol-version v2;
+        }
+        netconf {
+            ssh {
+                port {{ port_number }};
+            }
+        }
+    }
+}

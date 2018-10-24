@@ -1,0 +1,23 @@
+---
+- name: "01 - {{ inventory_hostname | upper }}: ENSURE OUTPUT DIRECTORY EXITS"
+  file:
+    path: "{{ output_dir }}/{{ inventory_hostname }}"
+    state: "directory"
+
+- name: "02 - {{ inventory_hostname | upper }}: GENERATE INTENDED CONFIG"
+  template:
+    src: "snmp.j2"
+    dest: "{{ output_dir }}/{{ inventory_hostname }}/snmp.cfg"
+
+- name: "03 - {{ inventory_hostname | upper }}: CHECK SNMP CONFIG ON DEVICE"
+  junos_config:
+    update: "replace"
+    src_format: "text"
+    src: "{{ output_dir }}/{{ inventory_hostname }}/snmp.cfg"
+  check_mode: true
+  register: report
+
+- name: "04 - GENERATE SNMP REPORT"
+  template:
+    src: "snmp_report.j2"
+    dest: "{{ output_dir }}/{{ inventory_hostname }}/20_snmp_report.md"

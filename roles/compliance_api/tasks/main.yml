@@ -1,0 +1,25 @@
+---
+- name: "01: MAKE API CALL TO GET NON COMPLIANT SNMP SERVERS"
+  set_fact:
+    non_compliance:
+      status_code: 200
+      non_compliant:
+        snmp:
+          - "qfx1"
+          - "vmx3"
+        services:
+          - "vmx3"
+        syslog:
+          - "qfx1"
+        system:
+          - "vmx3"
+        ntp:
+          - "vmx3"
+        tacacs:
+          - "qfx1"
+
+- name: "02: CREATE GROUP OF NON COMPLIANT SNMP DEVICES"
+  add_host:
+    hostname: "{{ item }}"
+    groups: "{{ cfg_section }}_non_compliant"
+  with_items: "{{ non_compliance['non_compliant'][cfg_section] }}"

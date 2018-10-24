@@ -1,0 +1,18 @@
+---
+- name: "01: GET NON COMPLIANT SYSTEM HOSTS"
+  hosts: "localhost"
+  connection: "local"
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: "compliance_api"
+      vars:
+        cfg_section: "system"
+
+- name: "02: PUSH CONFIGS TO FIX SYSTEM COMPLIANCE"
+  hosts: "system_non_compliant"
+  connection: "netconf"
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: "system"

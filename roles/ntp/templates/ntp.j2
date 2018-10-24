@@ -1,0 +1,13 @@
+#jinja2: lstrip_blocks: "true"
+system {
+    replace:
+    ntp {
+        authentication-key 24 type md5 value {{ ntp_key }};
+        server {{ ntp_sv_1 }} key 24;
+        server {{ ntp_sv_2 }} key 24;
+        server {{ ntp_sv_3 }} key 24;
+        server {{ ntp_sv_4 }} key 24;
+        trusted-key 24;
+        source-address {{ man_interface_ip }};
+    }
+}

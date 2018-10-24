@@ -1,0 +1,52 @@
+---
+- hosts: "{{ desired_hosts }}"
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: "FIND OLD FILES"
+      find:
+        paths: "{{ output_dir }}/{{ inventory_hostname }}/"
+        patterns: "*_report.md"
+      register: files_to_delete
+
+    - name: "REMOVE OLD REPORTS"
+      file:
+        state: absent
+        path: "{{ item.path }}"
+      with_items: "{{ files_to_delete['files'] }}"
+
+
+- hosts: "{{ desired_hosts }}"
+  gather_facts: no
+  connection: local
+
+  roles:
+
+    - { role: ntp }
+    - { role: services }
+    - { role: snmp }
+    - { role: syslog }
+    - { role: system }
+    - { role: tacacs }
+
+  tasks:
+    - name: "GENERATE MASTER TABLE"
+      copy:
+        content: |
+          #### REPORT for device: {{ inventory_hostname | upper }}
+          ```
+          |   Device   |   FEATURE   |   STATUS   |
+          |   ------   |   -------   |   ------   |
+        dest: "{{ output_dir }}/{{ inventory_hostname }}/10_table_report.md"
+
+    - name: "GENERATE END OF TABLE"
+      copy:
+        content: |
+            ```
+        dest: "{{ output_dir }}/{{ inventory_hostname }}/30_endoftable_report.md"
+
+    - name: "ASSEMBLE DEVICE REPORT"
+      assemble:
+        src: "{{ output_dir }}/{{ inventory_hostname }}/"
+        dest: "{{ output_dir }}/{{ inventory_hostname }}/{{ inventory_hostname }}_report.md"
+        regexp: "report.md$"
