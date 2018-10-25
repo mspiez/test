@@ -1,5 +1,5 @@
 <details>
-<summary>MX1<summary>
+<summary>MX1</summary>
 
 | Device | NTP | SERVICES | SNMP | SYSLOG | SYSTEM | TACACS |
 | :---: | :---: | :---: | :---: | :---: | :---: |:---: |
@@ -104,17 +104,17 @@
 +  authentication-order tacplus;
 +  tacplus-server {
 +      10.1.11.9 {
-+          secret "$9$JeUHmQF/tpBQzhSeK8L"; ## SECRET-DATA
++          secret "$9$.fz6tu1hcltpWLN-ws"; ## SECRET-DATA
 +          timeout 5;
 +          source-address 192.168.122.10;
 +      }
 +      10.1.11.10 {
-+          secret "$9$BLwRSe8X-ws48LGDkqf5"; ## SECRET-DATA
++          secret "$9$e6kMX-s2aUDksYfT3nCA"; ## SECRET-DATA
 +          timeout 5;
 +          source-address 192.168.122.10;
 +      }
 +      10.1.11.8 {
-+          secret "$9$eS2MX-s2aUDksYfT3nCA"; ## SECRET-DATA
++          secret "$9$4mJDkfT39Cuf5IEyrvM"; ## SECRET-DATA
 +          timeout 5;
 +          source-address 192.168.122.10;
 +      }
@@ -128,17 +128,17 @@
 +          tacplus {
 +              server {
 +                  10.1.11.9 {
-+                      secret "$9$193EyKLxdsYoLXUjq.5T"; ## SECRET-DATA
++                      secret "$9$71ds4GDkPfzGU/Cu0IR"; ## SECRET-DATA
 +                      timeout 5;
 +                      source-address 192.168.122.10;
 +                  }
 +                  10.1.11.10 {
-+                      secret "$9$M-dLNbgoGiHmg4QF/9pu"; ## SECRET-DATA
++                      secret "$9$huJyK8Nds4oGN-Hqf5F3"; ## SECRET-DATA
 +                      timeout 5;
 +                      source-address 192.168.122.10;
 +                  }
 +                  10.1.11.8 {
-+                      secret "$9$ERMSeW7-wg4Z7NikPfzF"; ## SECRET-DATA
++                      secret "$9$0G8t1hrM87Vb2MWJGiHmP"; ## SECRET-DATA
 +                      timeout 5;
 +                      source-address 192.168.122.10;
 +                  }
