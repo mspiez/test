@@ -1,5 +1,5 @@
 <details>
-<summary>MX1</summary>
+<summary>_MX1_</summary>
 
 | Device | NTP | SERVICES | SNMP | SYSLOG | SYSTEM | TACACS |
 | :---: | :---: | :---: | :---: | :---: | :---: |:---: |
