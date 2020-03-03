@@ -1,4 +1,4 @@
-### Main title
+### <a name="pookie"></a>Main title
 
 <details>
 <summary>MX1</summary>
@@ -303,4 +303,4 @@
 </details>
 </details>
 
-[create an anchor](#Main-title)
+Take me to [pookie](#pookie)
